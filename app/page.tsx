@@ -1,5 +1,8 @@
 "use client";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Plane, SendIcon } from "lucide-react";
 
 export default function Home() {
   const [userInput, setUserInput] = useState("");
@@ -21,15 +24,7 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-        />
-        <button type="submit">Send</button>
-      </form>
+    <div className="w-full h-[100vh] flex justify-center items-end p-10 bg-black">
       <div>
         {responses.map((res: any, index) => (
           <div key={index}>
@@ -42,6 +37,21 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <form
+        className="w-full flex gap-4 justify-center items-center"
+        onSubmit={handleSubmit}
+      >
+        <Input
+          type="text"
+          value={userInput}
+          className="w-1/2"
+          onChange={(e: any) => setUserInput(e.target.value)}
+        />
+        <Button className="px-4 py-4 bg-blue-600" type="submit">
+          Send
+          <SendIcon className="ml-2" />
+        </Button>
+      </form>
     </div>
   );
 }
